@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  postgis:
+    image: postgis/postgis:14-3.3
+    environment:
+      POSTGRES_DB: boilerplate
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senocak
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "54321:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+    healthcheck:
+      test: "pg_isready -U postgres"
+    networks:
+      - ops
+volumes:
+  postgis_data:
+networks:
+  ops:
