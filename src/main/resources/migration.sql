@@ -1,5 +1,5 @@
 CREATE TABLE if not exists city (
-    id int NOT NULL primary key,
+    id varchar(255) NOT NULL primary key,
     title varchar(255) not null ,
     lat NUMERIC(10, 8) not null ,
     lng NUMERIC(10, 8) not null ,
@@ -93,8 +93,8 @@ INSERT INTO city (id, title, lat, lng, northeast_lat, northeast_lng, southwest_l
 INSERT INTO city (id, title, lat, lng, northeast_lat, northeast_lng, southwest_lat, southwest_lng, location) VALUES ('81', 'DÜZCE', '40.84384900', '31.15654000', '40.89176200', '31.19580700', '40.82471700', '31.10666200', '0101000020E61000000E84640113283F4093E1783E036C4440');
 
 CREATE TABLE if not exists district (
-    id int NOT NULL primary key,
-    district_city_id int not null,
+    id varchar(255) NOT NULL primary key,
+    district_city_id varchar(255) not null,
     title varchar(255) NOT NULL,
     lat NUMERIC(10, 8),
     lng NUMERIC(10, 8),

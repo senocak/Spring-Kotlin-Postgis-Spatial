@@ -1,5 +1,6 @@
 package com.github.senocak.sks
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -17,10 +18,11 @@ import org.hibernate.annotations.UuidGenerator
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.Point
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
-import org.springframework.context.event.EventListener
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.data.jpa.repository.Query
@@ -32,12 +34,13 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/v1/cities")
+@RequestMapping("/api/v1")
 @SpringBootApplication
 class SpringKotlinSpatialApplication(
     val cityRepository: CityRepository,
     val districtRepository: DistrictRepository
-){
+) {
+    private val log: Logger = LoggerFactory.getLogger(javaClass)
     private val geometryFactory = GeometryFactory()
 
     //@EventListener(value = [ApplicationReadyEvent::class])
@@ -56,34 +59,51 @@ class SpringKotlinSpatialApplication(
             .run { districtRepository.saveAll(this) }
     }
 
-    @PostMapping
+    @PostMapping("city")
     fun create(@RequestParam lng: Double, @RequestParam lat: Double, @RequestParam title: String): City {
         val city = City(title = title, lat = lat.toBigDecimal(), lng = lng.toBigDecimal())
         city.location = geometryFactory.createPoint(Coordinate(lng, lat))
         return cityRepository.save(city)
     }
 
-    @GetMapping
-    fun findAll(): MutableList<City> = cityRepository.findAll()
-
-    @GetMapping("/nearest")
+    @GetMapping("/city/{lat}/{lng}/{distance}")
     fun findNearestCities(
-        @RequestParam lat: Float,
-        @RequestParam lng: Float,
-        @RequestParam distance: Int
-    ): Iterable<City?>? {
+        @PathVariable lat: Float,
+        @PathVariable lng: Float,
+        @PathVariable distance: Int
+    ): Iterable<City> {
         val point: Point = geometryFactory.createPoint(Coordinate(lng.toDouble(), lat.toDouble()))
-        return cityRepository.findNearestCities(point, distance.toDouble())
+        return cityRepository.findNearest(point, distance.toDouble())
     }
 
-    @GetMapping("/nearest/{id}/{distance}")
+    @GetMapping("/city/{id}/{distance}")
     fun findNearestCitiesByCityId(
         @PathVariable id: String,
         @PathVariable distance: Int
-    ): Iterable<City?>? {
+    ): Iterable<City> {
         val city: City = cityRepository.findById(id).orElseThrow { RuntimeException("City with id $id not found") }
         val point: Point = geometryFactory.createPoint(Coordinate(city.lng.toDouble(), city.lat.toDouble()))
-        return cityRepository.findNearestCities(point, distance.toDouble())
+        return cityRepository.findNearest(point, distance.toDouble())
+    }
+
+    @GetMapping("/district/{lat}/{lng}/{distance}")
+    fun findNearestDistricts(
+        @PathVariable lat: Float,
+        @PathVariable lng: Float,
+        @PathVariable distance: Int
+    ): Iterable<District> {
+        val point: Point = geometryFactory.createPoint(Coordinate(lng.toDouble(), lat.toDouble()))
+        return districtRepository.findNearest(point, distance.toDouble())
+    }
+
+    @GetMapping("/district/{id}/{distance}")
+    fun findNearestDistrictsByDistrictId(
+        @PathVariable id: String,
+        @PathVariable distance: Int
+    ): Iterable<District> {
+        val district: District = districtRepository.findById(id).orElseThrow { RuntimeException("District with id $id not found") }
+        val point: Point = geometryFactory.createPoint(Coordinate(district.lng.toDouble(), district.lat.toDouble()))
+        return districtRepository.findNearest(point, distance.toDouble())
     }
 }
 
@@ -112,7 +132,7 @@ data class City(
     @Column(name = "northeast_lng", precision = 10, scale = 8, nullable = false) var northeastLng: BigDecimal? = null
     @Column(name = "southwest_lat", precision = 10, scale = 8, nullable = false) var southwestLat: BigDecimal? = null
     @Column(name = "southwest_lng", precision = 10, scale = 8, nullable = false) var southwestLng: BigDecimal? = null
-    @Column(columnDefinition = "geography(Point, 4326)") var location: Point? = null
+    @JsonIgnore @Column(columnDefinition = "geography(Point, 4326)") var location: Point? = null
 }
 
 @Entity
@@ -138,14 +158,19 @@ data class District (
     @Column(name = "northeast_lng", precision = 10, scale = 8, nullable = false) var northeastLng: BigDecimal? = null
     @Column(name = "southwest_lat", precision = 10, scale = 8, nullable = false) var southwestLat: BigDecimal? = null
     @Column(name = "southwest_lng", precision = 10, scale = 8, nullable = false) var southwestLng: BigDecimal? = null
-    @Column(columnDefinition = "geography(Point, 4326)") var location: Point? = null
+    @JsonIgnore @Column(columnDefinition = "geography(Point, 4326)") var location: Point? = null
 }
 
 interface CityRepository: JpaRepository<City, String>, JpaSpecificationExecutor<City> {
     @Query("SELECT c FROM City c WHERE function('ST_DWithin', c.location, :point, :distance) = true")
-    fun findNearestCities(point: Point?, distance: Double): Iterable<City?>?
+    fun findNearest(point: Point, distance: Double): Iterable<City>
+    //@Query("SELECT g FROM City g WHERE ST_Intersects(g.location, ST_SetSRID(ST_MakePoint(:lng, :lat), 4326))", nativeQuery = true)
+    //fun findAllByLngLat(lng: Double, lat: Double): List<City>
+
+    //@Query("select f from City as f where dwithin(f.location, :point, 10000, true) = TRUE")
+    //fun findNearestCities(point: Point): List<City>
 }
-interface DistrictRepository: JpaRepository<District, String>, JpaSpecificationExecutor<District>{
+interface DistrictRepository: JpaRepository<District, String>, JpaSpecificationExecutor<District> {
     @Query("SELECT d FROM District d WHERE function('ST_DWithin', d.location, :point, :distance) = true")
-    fun findNearestCities(point: Point?, distance: Double): Iterable<District?>?
+    fun findNearest(point: Point, distance: Double): Iterable<District>
 }

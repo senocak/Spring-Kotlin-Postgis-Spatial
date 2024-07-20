@@ -1,0 +1,13 @@
+### findNearestCities by city id
+GET http://localhost:8089/api/v1/city/1/300000
+
+### findNearestCities by lat and lng
+GET http://localhost:8089/api/v1/city/39.9208/32.8541/84000
+
+### findNearestDistricts by district id
+GET http://localhost:8089/api/v1/district/71/40000
+
+### findNearestDistricts by lat and lng
+GET http://localhost:8089/api/v1/district/39.9208/32.8541/4000
+
+

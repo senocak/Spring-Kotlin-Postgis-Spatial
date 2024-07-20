@@ -1,7 +1,6 @@
+server:
+    port: 8089
 spring:
-    sql:
-        init:
-            mode: always
     application:
         name: Spring Kotlin Spatial
     datasource:
@@ -15,11 +14,14 @@ spring:
                 show_sql: true
                 format_sql: true
         hibernate:
-            ddl-auto: update
+            ddl-auto: validate
         show-sql: false
     data:
         jdbc:
             dialect: postgresql
+    liquibase:
+        enabled: true
+        change-log: classpath:migration.sql
 logging:
     level:
         org:
