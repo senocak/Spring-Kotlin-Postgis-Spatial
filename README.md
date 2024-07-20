@@ -4,6 +4,11 @@
 ```sh
 docker-compose up -d
 ```
+### Need to install postgis extension inside container
+```postgresql
+CREATE EXTENSION postgis;
+```
+
 ### Default values
 - `SERVER_IP=localhost`
 - `POSTGRESQL_PORT=54321`
