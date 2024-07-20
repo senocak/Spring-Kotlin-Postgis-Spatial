@@ -1,5 +1,5 @@
 ### findNearestCities by city id
-GET http://localhost:8089/api/v1/city/1/300000
+GET http://localhost:8089/api/v1/city/1/100000
 
 ### findNearestCities by lat and lng
 GET http://localhost:8089/api/v1/city/39.9208/32.8541/84000
