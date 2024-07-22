@@ -1,20 +1,5 @@
 package com.github.senocak.sks
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.ForeignKey
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.MappedSuperclass
-import jakarta.persistence.Table
-import java.io.Serializable
-import java.math.BigDecimal
-import org.hibernate.annotations.OnDelete
-import org.hibernate.annotations.OnDeleteAction
-import org.hibernate.annotations.UuidGenerator
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.Point
@@ -23,37 +8,54 @@ import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor
-import org.springframework.data.jpa.repository.Query
+import org.springframework.context.event.EventListener
+import org.springframework.data.geo.Circle
+import org.springframework.data.geo.Distance
+import org.springframework.data.geo.GeoResult
+import org.springframework.data.geo.GeoResults
+import org.springframework.data.geo.Metrics
+import org.springframework.data.redis.connection.RedisGeoCommands
+import org.springframework.data.redis.core.GeoOperations
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+
+fun main(args: Array<String>) {
+    runApplication<SpringKotlinSpatialApplication>(*args)
+}
 
 @RestController
 @RequestMapping("/api/v1")
 @SpringBootApplication
 class SpringKotlinSpatialApplication(
     val cityRepository: CityRepository,
-    val districtRepository: DistrictRepository
+    val districtRepository: DistrictRepository,
+    private val geoOperations: GeoOperations<String, Any>,
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
     private val geometryFactory = GeometryFactory()
+    private val vehicleLocation: String = "vehicle_location"
 
-    //@EventListener(value = [ApplicationReadyEvent::class])
+    @EventListener(value = [ApplicationReadyEvent::class])
     fun init(event: ApplicationReadyEvent) {
+        add(latitude = 39.92083330, longitude = 33.23083330, vehicleName = "ELMADAĞ")
+        add(latitude = 39.94583330, longitude = 32.66944440, vehicleName = "ETİMESGUT")
+        add(latitude = 39.02905060, longitude = 33.81042220, vehicleName = "EVREN")
         cityRepository.findAll()
         .map { city ->
-            city.location = geometryFactory.createPoint(Coordinate(city.lng.toDouble(), city.lat.toDouble()))
+            if (city.location == null)
+                city.location = geometryFactory.createPoint(Coordinate(city.lng.toDouble(), city.lat.toDouble()))
             city
         }
         .run { cityRepository.saveAll(this) }
         districtRepository.findAll()
             .map { district ->
-                district.location = geometryFactory.createPoint(Coordinate(district.lng.toDouble(), district.lat.toDouble()))
+                if (district.location == null)
+                    district.location = geometryFactory.createPoint(Coordinate(district.lng.toDouble(), district.lat.toDouble()))
                 district
             }
             .run { districtRepository.saveAll(this) }
@@ -105,72 +107,49 @@ class SpringKotlinSpatialApplication(
         val point: Point = geometryFactory.createPoint(Coordinate(district.lng.toDouble(), district.lat.toDouble()))
         return districtRepository.findNearest(point, distance.toDouble())
     }
+
+    @PostMapping("/vehicle")
+    fun addVehicleLocation(@RequestBody request: VehicleLocation): Long? =
+        add(latitude = request.latitude, longitude = request.longitude, vehicleName = request.name)
+
+    @GetMapping("/vehicle/{lat}/{lng}/{distance}")
+    fun findNearestVehiclesByDistrictId(
+        @PathVariable lat: Double,
+        @PathVariable lng: Double,
+        @PathVariable distance: Double
+    ): List<VehicleLocation> = findNearestVehicles(longitude = lng, latitude = lat, km = distance)
+
+    private fun add(latitude: Double, longitude: Double, vehicleName: String): Long? {
+        val point: org.springframework.data.geo.Point = org.springframework.data.geo.Point(longitude, latitude)
+        return geoOperations.add(vehicleLocation, point, vehicleName)
+    }
+
+    private fun findNearestVehicles(longitude: Double, latitude: Double, km: Double): List<VehicleLocation> {
+        val args: RedisGeoCommands.GeoRadiusCommandArgs = RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs()
+            .includeCoordinates().includeDistance().sortAscending().limit(10)
+
+        val circle = Circle(org.springframework.data.geo.Point(longitude, latitude), Distance(km, Metrics.KILOMETERS))
+        val response: GeoResults<RedisGeoCommands.GeoLocation<Any>>? = geoOperations.radius(vehicleLocation, circle, args)
+
+        val vehicleLocationResponses: MutableList<VehicleLocation> = arrayListOf()
+        response?.content?.forEach { data: GeoResult<RedisGeoCommands.GeoLocation<Any>> ->
+            vehicleLocationResponses.add(element =
+            VehicleLocation(name = "${data.content.name}", latitude = data.content.point.y, longitude = data.content.point.x)
+                .also { it.averageDistance =  data.distance}
+                .also { it.hash =  geoOperations.hash(vehicleLocation, data.content.name)!!.stream().findFirst().get()}
+            )
+        }
+        return vehicleLocationResponses
+    }
 }
 
-fun main(args: Array<String>) {
-    runApplication<SpringKotlinSpatialApplication>(*args)
+
+data class VehicleLocation(
+    val name: String,
+    val latitude: Double,
+    val longitude: Double
+) {
+    var averageDistance: Distance? = null
+    var hash: String? = null
 }
 
-@MappedSuperclass
-open class BaseDomain(
-    @Id
-    @UuidGenerator(style = UuidGenerator.Style.RANDOM)
-    @Column(name = "id", updatable = false, nullable = false)
-    var id: String? = null
-): Serializable
-
-@Entity
-@Table(name = "city")
-data class City(
-    @Column(name = "title", nullable = false)
-    var title: String,
-
-    @Column(name = "lat", precision = 10, scale = 8, nullable = false) var lat: BigDecimal,
-    @Column(name = "lng", precision = 10, scale = 8, nullable = false) var lng: BigDecimal,
-): BaseDomain() {
-    @Column(name = "northeast_lat", precision = 10, scale = 8, nullable = false) var northeastLat: BigDecimal? = null
-    @Column(name = "northeast_lng", precision = 10, scale = 8, nullable = false) var northeastLng: BigDecimal? = null
-    @Column(name = "southwest_lat", precision = 10, scale = 8, nullable = false) var southwestLat: BigDecimal? = null
-    @Column(name = "southwest_lng", precision = 10, scale = 8, nullable = false) var southwestLng: BigDecimal? = null
-    @JsonIgnore @Column(columnDefinition = "geography(Point, 4326)") var location: Point? = null
-}
-
-@Entity
-@Table(name = "district")
-data class District (
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(
-        name = "district_city_id",
-        referencedColumnName = "id",
-        nullable = false,
-        foreignKey = ForeignKey(name = "fk_district_city_id")
-    )
-    val city_id: City,
-
-    @Column(name = "title", nullable = false)
-    var title: String,
-
-    @Column(name = "lat", precision = 10, scale = 8, nullable = false) var lat: BigDecimal,
-    @Column(name = "lng", precision = 10, scale = 8, nullable = false) var lng: BigDecimal,
-) : BaseDomain() {
-    @Column(name = "northeast_lat", precision = 10, scale = 8, nullable = false) var northeastLat: BigDecimal? = null
-    @Column(name = "northeast_lng", precision = 10, scale = 8, nullable = false) var northeastLng: BigDecimal? = null
-    @Column(name = "southwest_lat", precision = 10, scale = 8, nullable = false) var southwestLat: BigDecimal? = null
-    @Column(name = "southwest_lng", precision = 10, scale = 8, nullable = false) var southwestLng: BigDecimal? = null
-    @JsonIgnore @Column(columnDefinition = "geography(Point, 4326)") var location: Point? = null
-}
-
-interface CityRepository: JpaRepository<City, String>, JpaSpecificationExecutor<City> {
-    @Query("SELECT c FROM City c WHERE function('ST_DWithin', c.location, :point, :distance) = true")
-    fun findNearest(point: Point, distance: Double): Iterable<City>
-    //@Query("SELECT g FROM City g WHERE ST_Intersects(g.location, ST_SetSRID(ST_MakePoint(:lng, :lat), 4326))", nativeQuery = true)
-    //fun findAllByLngLat(lng: Double, lat: Double): List<City>
-
-    //@Query("select f from City as f where dwithin(f.location, :point, 10000, true) = TRUE")
-    //fun findNearestCities(point: Point): List<City>
-}
-interface DistrictRepository: JpaRepository<District, String>, JpaSpecificationExecutor<District> {
-    @Query("SELECT d FROM District d WHERE function('ST_DWithin', d.location, :point, :distance) = true")
-    fun findNearest(point: Point, distance: Double): Iterable<District>
-}

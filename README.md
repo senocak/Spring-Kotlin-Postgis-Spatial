@@ -182,3 +182,33 @@ CREATE EXTENSION postgis;
   }
 ]
 ```
+
+##  Location Based Search via Redis
+1. findNearestDistricts by lat and lng
+```sh
+GET http://localhost:8089/api/v1/vehicle/39.9208/32.8541/40
+```
+```json
+[
+  {
+    "name": "ETİMESGUT",
+    "latitude": 39.94583291967408,
+    "longitude": 32.66944259405136,
+    "averageDistance": {
+      "value": 15.9932,
+      "metric": "KILOMETERS"
+    },
+    "hash": "sxp5prvjm40"
+  },
+  {
+    "name": "ELMADAĞ",
+    "latitude": 39.92083296487953,
+    "longitude": 33.23083430528641,
+    "averageDistance": {
+      "value": 32.1365,
+      "metric": "KILOMETERS"
+    },
+    "hash": "sxpeh5mgww0"
+  }
+]
+```

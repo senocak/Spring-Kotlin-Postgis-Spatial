@@ -15,7 +15,21 @@ services:
       test: "pg_isready -U postgres"
     networks:
       - ops
+  redis:
+    image: redis:7.0.5-alpine
+    container_name: redis
+    restart: always
+    command: redis-server --save 20 1 --loglevel warning --requirepass senocak
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - ops
 volumes:
   postgis_data:
+  redis_data:
 networks:
   ops:
+
+
