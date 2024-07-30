@@ -10,7 +10,14 @@ GET http://localhost:8089/api/v1/district/71/40000
 ### findNearestDistricts by lat and lng
 GET http://localhost:8089/api/v1/district/39.9208/32.8541/4000
 
-### findNearestDistricts by lat and lng
-GET http://localhost:8089/api/v1/vehicle/39.9208/32.8541/40
+### getAllVehicleLocationsForCities
+GET http://localhost:8089/api/v1/vehicle/cities
 
+### getAllVehicleLocationsForDistricts
+GET http://localhost:8089/api/v1/vehicle/districts
 
+### findNearestVehicles by lat and lng
+GET http://localhost:8089/api/v1/vehicle/districts/39.9208/32.8541/10
+
+### findNearestVehiclesByGeoOperations by lat and lng
+GET http://localhost:8089/api/v1/vehicle/39.9208/32.8541/10

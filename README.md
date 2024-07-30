@@ -10,13 +10,14 @@ CREATE EXTENSION postgis;
 ```
 
 ### Default values
-- `SERVER_IP=localhost`
-- `POSTGRESQL_PORT=54321`
-- `POSTGRESQL_DB=boilerplate`
-- `POSTGRESQL_SCHEMA=public`
-- `POSTGRESQL_USER=postgres`
-- `POSTGRESQL_PASSWORD=senocak`
-
+```
+- SERVER_IP             =   localhost
+- POSTGRESQL_PORT       =   54321
+- POSTGRESQL_DB         =   boilerplate
+- POSTGRESQL_SCHEMA     =   public
+- POSTGRESQL_USER       =   postgres
+- POSTGRESQL_PASSWORD   =   senocak
+```
 
 ### CURLs
 
@@ -184,6 +185,20 @@ CREATE EXTENSION postgis;
 ```
 
 ##  Location Based Search via Redis
+
+
+### Default values
+```
+- REDIS_HOST        =   localhost
+- REDIS_PORT        =   6379
+- REDIS_PASSWORD    =   senocak
+- REDIS_TIMEOUT     =   300
+```
+
+```sh
+redis-cli -h 127.0.0.1 -p 6379 -a senocak
+```
+
 1. findNearestDistricts by lat and lng
 ```sh
 GET http://localhost:8089/api/v1/vehicle/39.9208/32.8541/40
