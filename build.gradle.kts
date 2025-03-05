@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.senocak"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 
 java {
     toolchain {
@@ -22,11 +22,12 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.hibernate:hibernate-spatial:6.5.2.Final")
     implementation("org.liquibase:liquibase-core")
-    implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("redis.clients:jedis:3.3.0")
     runtimeOnly("org.postgresql:postgresql")
 

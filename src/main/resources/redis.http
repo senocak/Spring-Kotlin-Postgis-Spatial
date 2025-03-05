@@ -1,0 +1,11 @@
+### All cities
+GET http://localhost:8089/api/v1/redis/cities
+
+### All districts
+GET http://localhost:8089/api/v1/redis/districts
+
+### findNearestByJedis by lat and lng
+GET http://localhost:8089/api/v1/redis/district/39.9208/32.8541/70
+
+### findNearestByGeoOperations by lat and lng
+GET http://localhost:8089/api/v1/redis/39.9208/32.8541/70

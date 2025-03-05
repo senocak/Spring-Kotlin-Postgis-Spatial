@@ -22,8 +22,22 @@ spring:
         redis:
             HOST: ${REDIS_HOST:localhost}
             PORT: ${REDIS_PORT:6379}
-            PASSWORD: ${REDIS_PASSWORD:senocak}
+            PASSWORD: ${REDIS_PASSWORD:}
             TIMEOUT: ${REDIS_TIMEOUT:300}
+        mongodb:
+            host: ${SERVER_IP:localhost}
+            port: ${MONGO_PORT:27017}
+            username: ${MONGO_USER:anil}
+            database: ${MONGO_DB:boilerplate}
+            password: ${MONGO_PASSWORD:senocak}
+            authentication-database: admin
+            auto-index-creation: true
+            connection-pool:
+                max-size: 100
+                min-size: 5
+            socket:
+                connect-timeout: 5000
+                read-timeout: 5000
     liquibase:
         enabled: true
         change-log: classpath:migration.sql
@@ -34,3 +48,13 @@ logging:
                 orm:
                     jdbc:
                         bind: trace
+            springframework:
+                data:
+                    mongodb:
+                        core:
+                            MongoTemplate: DEBUG
+        com:
+            github:
+                senocak:
+                    sks:
+                        mongo: INFO

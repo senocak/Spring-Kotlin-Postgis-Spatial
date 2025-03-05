@@ -1,23 +1,26 @@
-### findNearestCities by city id
-GET http://localhost:8089/api/v1/city/1/100000
+### getAllCities
+GET http://localhost:8089/api/v1/postgis/cities
 
-### findNearestCities by lat and lng
-GET http://localhost:8089/api/v1/city/39.9208/32.8541/84000
+> {%
+    client.global.set("firstCityId", response.body[0].id)
+%}
 
-### findNearestDistricts by district id
-GET http://localhost:8089/api/v1/district/71/40000
+### findNearestCities
+GET http://localhost:8089/api/v1/postgis/city/{{firstCityId}}/70000
 
-### findNearestDistricts by lat and lng
-GET http://localhost:8089/api/v1/district/39.9208/32.8541/4000
+### findNearestCitiesByCityId
+GET http://localhost:8089/api/v1/postgis/city/39.9208/32.8541/70000
 
-### getAllVehicleLocationsForCities
-GET http://localhost:8089/api/v1/vehicle/cities
+### getAllDistricts
+GET http://localhost:8089/api/v1/postgis/districts
 
-### getAllVehicleLocationsForDistricts
-GET http://localhost:8089/api/v1/vehicle/districts
+> {%
+    client.global.set("firstDistrictId", response.body[0].id)
+%}
 
-### findNearestVehicles by lat and lng
-GET http://localhost:8089/api/v1/vehicle/districts/39.9208/32.8541/10
+### findNearestDistricts
+GET http://localhost:8089/api/v1/postgis/district/{{firstDistrictId}}/40000
 
-### findNearestVehiclesByGeoOperations by lat and lng
-GET http://localhost:8089/api/v1/vehicle/39.9208/32.8541/10
+### findNearestDistrictsByDistrictId
+GET http://localhost:8089/api/v1/postgis/district/39.9208/32.8541/4000
+

@@ -1,37 +1,16 @@
 package com.github.senocak.sks
 
-import org.locationtech.jts.geom.Coordinate
-import org.locationtech.jts.geom.GeometryFactory
-import org.locationtech.jts.geom.Point
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
-import org.springframework.context.event.EventListener
-import org.springframework.data.geo.Circle
-import org.springframework.data.geo.Distance
-import org.springframework.data.geo.GeoResult
-import org.springframework.data.geo.GeoResults
-import org.springframework.data.geo.Metrics
-import org.springframework.data.redis.connection.RedisGeoCommands
-import org.springframework.data.redis.core.GeoOperations
-import org.springframework.data.redis.core.RedisTemplate
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
-import redis.clients.jedis.GeoRadiusResponse
-import redis.clients.jedis.GeoUnit
-import redis.clients.jedis.Jedis
-import redis.clients.jedis.JedisPool
 
 fun main(args: Array<String>) {
     runApplication<SpringKotlinSpatialApplication>(*args)
 }
 
+@SpringBootApplication
+class SpringKotlinSpatialApplication
+
+/*
 @RestController
 @RequestMapping("/api/v1")
 @SpringBootApplication
@@ -46,7 +25,7 @@ class SpringKotlinSpatialApplication(
     private val geometryFactory = GeometryFactory()
     private val vehicleLocationsCity: String = "vehicle_location_city"
     private val vehicleLocationsDistrict: String = "vehicle_location_district"
-    private val connection = redisTemplate.connectionFactory?.connection
+    private val connection: RedisConnection? = redisTemplate.connectionFactory?.connection
 
     @EventListener(value = [ApplicationReadyEvent::class])
     fun init(event: ApplicationReadyEvent) {
@@ -54,7 +33,7 @@ class SpringKotlinSpatialApplication(
         connection?.serverCommands()?.flushAll()
 
         cityRepository.findAll()
-        .map { city ->
+        .map { city: City ->
             if (city.location == null)
                 city.location = geometryFactory.createPoint(Coordinate(city.lng.toDouble(), city.lat.toDouble()))
             //add(latitude = city.lat.toDouble(), longitude = city.lng.toDouble(), vehicleName = city.title)
@@ -65,7 +44,7 @@ class SpringKotlinSpatialApplication(
         }
         .run { cityRepository.saveAll(this) }
         districtRepository.findAll()
-            .map { district ->
+            .map { district: District ->
                 if (district.location == null)
                     district.location = geometryFactory.createPoint(Coordinate(district.lng.toDouble(), district.lat.toDouble()))
                 add(latitude = district.lat.toDouble(), longitude = district.lng.toDouble(), vehicleName = district.title)
@@ -149,7 +128,7 @@ class SpringKotlinSpatialApplication(
     @GetMapping("/vehicle/districts")
     fun getAllVehicleLocationsForDistricts(): MutableSet<String> {
         val districts: MutableSet<String>
-        jedisPool.resource.use {
+        jedisPool.resource.use { it: Jedis ->
             districts = it.zrange(vehicleLocationsDistrict, 0, -1)
         }
         return districts
@@ -163,7 +142,7 @@ class SpringKotlinSpatialApplication(
         @PathVariable distance: Double
     ): MutableList<GeoRadiusResponse> {
         val georadius: MutableList<GeoRadiusResponse>
-        jedisPool.resource.use {
+        jedisPool.resource.use { it: Jedis ->
             georadius = it.georadius(if (type == "districts") vehicleLocationsDistrict else vehicleLocationsCity,
                 lng, lat, distance, GeoUnit.KM)
         }
@@ -201,12 +180,5 @@ class SpringKotlinSpatialApplication(
     }
 }
 
-data class VehicleLocation(
-    val name: String,
-    val latitude: Double,
-    val longitude: Double
-) {
-    var averageDistance: Distance? = null
-    var hash: String? = null
-}
 
+*/

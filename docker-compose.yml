@@ -15,20 +15,35 @@ services:
       test: "pg_isready -U postgres"
     networks:
       - ops
-  redis:
-    image: redis:7.0.5-alpine
-    container_name: redis
-    restart: always
-    command: redis-server --save 20 1 --loglevel warning --requirepass senocak
-    volumes:
-      - redis_data:/data
+  redis-single-node-cluster:
+    image: docker.io/bitnami/redis-cluster:7.0
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'REDIS_CLUSTER_REPLICAS=0'
+      - 'REDIS_NODES=127.0.0.1 127.0.0.1 127.0.0.1'
+      - 'REDIS_CLUSTER_CREATOR=yes'
+      - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
+      - 'REDIS_CLUSTER_ANNOUNCE_IP=127.0.0.1'
     ports:
-      - "6379:6379"
+      - '6379:6379' # could not change it
+    networks:
+      - ops
+  mongo:
+    image: mongo:6.0.3
+    ports:
+      - '27017:27017'
+    container_name: mongo
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=anil
+      - MONGO_INITDB_ROOT_PASSWORD=senocak
     networks:
       - ops
 volumes:
   postgis_data:
-  redis_data:
 networks:
   ops:
 

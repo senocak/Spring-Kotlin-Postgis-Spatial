@@ -1,4 +1,4 @@
-package com.github.senocak.sks
+package com.github.senocak.sks.sql
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.Column
