@@ -10678,5 +10678,694 @@
         "location": "0101000020E61000000ED539ABAAB44440F6083543AA2A4340"
       }
     ]
+  },
+  {
+    "id": "73",
+    "title": "ŞIRNAK",
+    "lat": "37.51638890",
+    "lng": "42.46111110",
+    "northeast_lat": "37.53357200",
+    "northeast_lng": "42.47112700",
+    "southwest_lat": "37.50009300",
+    "southwest_lng": "42.44463100",
+    "location": "0101000020E61000004A2943B0053B45403BC20E0819C24240",
+    "districts": [
+      {
+        "id": "906",
+        "title": "BEYTÜŞŞEBAP",
+        "lat": "37.57094500",
+        "lng": "43.17116660",
+        "northeast_lat": "37.57733110",
+        "northeast_lng": "43.18227700",
+        "southwest_lat": "37.56486900",
+        "southwest_lng": "43.16412300",
+        "location": "0101000020E6100000719582C9E89545404968CBB914C94240"
+      },
+      {
+        "id": "907",
+        "title": "CİZRE",
+        "lat": "37.32500000",
+        "lng": "42.19583330",
+        "northeast_lat": "37.34469700",
+        "northeast_lng": "42.20375500",
+        "southwest_lat": "37.31503200",
+        "southwest_lng": "42.17481200",
+        "location": "0101000020E6100000DF7BC910111945409A99999999A94240"
+      },
+      {
+        "id": "908",
+        "title": "GÜÇLÜKONAK",
+        "lat": "37.47121870",
+        "lng": "41.91523390",
+        "northeast_lat": "37.47673110",
+        "northeast_lng": "41.92266500",
+        "southwest_lat": "37.46426900",
+        "southwest_lng": "41.90453500",
+        "location": "0101000020E610000063586A6226F54440BFE1F4E450BC4240"
+      },
+      {
+        "id": "909",
+        "title": "İDİL",
+        "lat": "37.34166670",
+        "lng": "41.89027780",
+        "northeast_lat": "37.34797800",
+        "northeast_lng": "41.90300200",
+        "southwest_lat": "37.33234800",
+        "southwest_lng": "41.86483500",
+        "location": "0101000020E61000006BAD799FF4F14440ED5003BCBBAB4240"
+      },
+      {
+        "id": "910",
+        "title": "SİLOPİ",
+        "lat": "37.24825040",
+        "lng": "42.47233150",
+        "northeast_lat": "37.25963100",
+        "northeast_lng": "42.48663300",
+        "southwest_lat": "37.23367800",
+        "southwest_lng": "42.44670600",
+        "location": "0101000020E610000071AFCC5B753C4540069C4AABC69F4240"
+      },
+      {
+        "id": "911",
+        "title": "ŞIRNAK",
+        "lat": "37.51638890",
+        "lng": "42.46111110",
+        "northeast_lat": "37.53357200",
+        "northeast_lng": "42.47112700",
+        "southwest_lat": "37.50009300",
+        "southwest_lng": "42.44463100",
+        "location": "0101000020E61000004A2943B0053B45403BC20E0819C24240"
+      },
+      {
+        "id": "912",
+        "title": "ULUDERE",
+        "lat": "37.44974430",
+        "lng": "42.85272690",
+        "northeast_lat": "37.45433110",
+        "northeast_lng": "42.86316200",
+        "southwest_lat": "37.44186900",
+        "southwest_lng": "42.84503800",
+        "location": "0101000020E6100000B1F5B127266D4540FD07A23891B94240"
+      }
+    ]
+  },
+  {
+    "id": "74",
+    "title": "BARTIN",
+    "lat": "41.63444440",
+    "lng": "32.33750000",
+    "northeast_lat": "41.65654200",
+    "northeast_lng": "32.37105000",
+    "southwest_lat": "41.61351300",
+    "southwest_lng": "32.29745700",
+    "location": "0101000020E610000033333333332B4040AF905E7935D14440",
+    "districts": [
+      {
+        "id": "913",
+        "title": "AMASRA",
+        "lat": "41.74514250",
+        "lng": "32.38465870",
+        "northeast_lat": "41.75070700",
+        "northeast_lng": "32.38871500",
+        "southwest_lat": "41.74202000",
+        "southwest_lng": "32.37937900",
+        "location": "0101000020E61000009A4F0C7F3C3140400A2E56D460DF4440"
+      },
+      {
+        "id": "914",
+        "title": "BARTIN",
+        "lat": "41.63444440",
+        "lng": "32.33750000",
+        "northeast_lat": "41.65654200",
+        "northeast_lng": "32.37105000",
+        "southwest_lat": "41.61351300",
+        "southwest_lng": "32.29745700",
+        "location": "0101000020E610000033333333332B4040AF905E7935D14440"
+      },
+      {
+        "id": "915",
+        "title": "KURUCAŞİLE",
+        "lat": "41.84194740",
+        "lng": "32.71608290",
+        "northeast_lat": "41.84763110",
+        "northeast_lng": "32.72153800",
+        "southwest_lat": "41.83516900",
+        "southwest_lng": "32.70664300",
+        "location": "0101000020E6100000C85CBE9AA85B4040E3F9B1EEC4EB4440"
+      },
+      {
+        "id": "916",
+        "title": "ULUS",
+        "lat": "41.58610000",
+        "lng": "32.64060000",
+        "northeast_lat": "41.59133200",
+        "northeast_lng": "32.65961900",
+        "southwest_lat": "41.57778200",
+        "southwest_lng": "32.62620000",
+        "location": "0101000020E6100000A7E8482EFF514040C217265305CB4440"
+      }
+    ]
+  },
+  {
+    "id": "75",
+    "title": "ARDAHAN",
+    "lat": "41.11048100",
+    "lng": "42.70217100",
+    "northeast_lat": "41.12146700",
+    "northeast_lng": "42.71712900",
+    "southwest_lat": "41.09891000",
+    "southwest_lng": "42.68641800",
+    "location": "0101000020E61000008D9944BDE059454029EACC3D248E4440",
+    "districts": [
+      {
+        "id": "917",
+        "title": "ARDAHAN",
+        "lat": "41.11048100",
+        "lng": "42.70217100",
+        "northeast_lat": "41.12146700",
+        "northeast_lng": "42.71712900",
+        "southwest_lat": "41.09891000",
+        "southwest_lng": "42.68641800",
+        "location": "0101000020E61000008D9944BDE059454029EACC3D248E4440"
+      },
+      {
+        "id": "918",
+        "title": "ÇILDIR",
+        "lat": "41.13333300",
+        "lng": "43.13333300",
+        "northeast_lat": "41.13513110",
+        "northeast_lng": "43.14215200",
+        "southwest_lat": "41.12266900",
+        "southwest_lng": "43.12304800",
+        "location": "0101000020E6100000213D450E11914540213D450E11914440"
+      },
+      {
+        "id": "919",
+        "title": "DAMAL",
+        "lat": "41.34072320",
+        "lng": "42.84118940",
+        "northeast_lat": "41.34773110",
+        "northeast_lng": "42.85128300",
+        "southwest_lat": "41.33526900",
+        "southwest_lng": "42.83211700",
+        "location": "0101000020E6100000F55E2118AC6B4540867E5CD19CAB4440"
+      },
+      {
+        "id": "920",
+        "title": "GÖLE",
+        "lat": "40.79352790",
+        "lng": "42.60872120",
+        "northeast_lat": "40.79903110",
+        "northeast_lng": "42.61810300",
+        "southwest_lat": "40.78656900",
+        "southwest_lng": "42.59909700",
+        "location": "0101000020E6100000E1308793EA4D4540567B7D5292654440"
+      },
+      {
+        "id": "921",
+        "title": "HANAK",
+        "lat": "41.23333330",
+        "lng": "42.85000000",
+        "northeast_lat": "41.24233110",
+        "northeast_lng": "42.85686700",
+        "southwest_lat": "41.22986900",
+        "southwest_lng": "42.83773300",
+        "location": "0101000020E6100000CDCCCCCCCC6C4540AC4896DDDD9D4440"
+      },
+      {
+        "id": "922",
+        "title": "POSOF",
+        "lat": "41.51055560",
+        "lng": "42.72916670",
+        "northeast_lat": "41.51783110",
+        "northeast_lng": "42.73890800",
+        "southwest_lat": "41.50536900",
+        "southwest_lng": "42.71969200",
+        "location": "0101000020E610000087EA9C55555D45401465CAE259C14440"
+      }
+    ]
+  },
+  {
+    "id": "76",
+    "title": "IĞDIR",
+    "lat": "39.91666670",
+    "lng": "44.03333330",
+    "northeast_lat": "39.95016300",
+    "northeast_lng": "44.09282500",
+    "southwest_lat": "39.88410900",
+    "southwest_lng": "43.98072900",
+    "location": "0101000020E610000013AFFC434404464087EA9C5555F54340",
+    "districts": [
+      {
+        "id": "923",
+        "title": "ARALIK",
+        "lat": "39.87200680",
+        "lng": "44.51813430",
+        "northeast_lat": "39.87886610",
+        "northeast_lng": "44.52743800",
+        "southwest_lat": "39.86640400",
+        "southwest_lng": "44.50869000",
+        "location": "0101000020E6100000CAB7883952424640DFF137EB9DEF4340"
+      },
+      {
+        "id": "924",
+        "title": "IĞDIR",
+        "lat": "39.91666670",
+        "lng": "44.03333330",
+        "northeast_lat": "39.95016300",
+        "northeast_lng": "44.09282500",
+        "southwest_lat": "39.88410900",
+        "southwest_lng": "43.98072900",
+        "location": "0101000020E610000013AFFC434404464087EA9C5555F54340"
+      },
+      {
+        "id": "925",
+        "title": "KARAKOYUNLU",
+        "lat": "39.97150940",
+        "lng": "44.17430700",
+        "northeast_lat": "39.97863110",
+        "northeast_lng": "44.18218800",
+        "southwest_lat": "39.96616900",
+        "southwest_lng": "44.16341200",
+        "location": "0101000020E6100000603B18B14F164640D860866B5AFC4340"
+      },
+      {
+        "id": "926",
+        "title": "TUZLUCA",
+        "lat": "40.04534100",
+        "lng": "43.65589100",
+        "northeast_lat": "40.05533110",
+        "northeast_lng": "43.66999900",
+        "southwest_lat": "40.04286900",
+        "southwest_lng": "43.65120100",
+        "location": "0101000020E6100000D05E7D3CF4D345407F15E0BBCD054440"
+      }
+    ]
+  },
+  {
+    "id": "77",
+    "title": "YALOVA",
+    "lat": "40.65000000",
+    "lng": "29.26666670",
+    "northeast_lat": "40.66806000",
+    "northeast_lng": "29.31653600",
+    "southwest_lat": "40.63413800",
+    "southwest_lng": "29.21023300",
+    "location": "0101000020E6100000A76ED34444443D403333333333534440",
+    "districts": [
+      {
+        "id": "927",
+        "title": "ALTINOVA",
+        "lat": "40.69750000",
+        "lng": "29.51138890",
+        "northeast_lat": "40.74146300",
+        "northeast_lng": "29.55804200",
+        "southwest_lat": "40.65861500",
+        "southwest_lng": "29.44048400",
+        "location": "0101000020E610000094090962EA823D40E17A14AE47594440"
+      },
+      {
+        "id": "928",
+        "title": "ARMUTLU",
+        "lat": "40.51944440",
+        "lng": "28.82805560",
+        "northeast_lat": "40.52613110",
+        "northeast_lng": "28.84086400",
+        "southwest_lat": "40.51366900",
+        "southwest_lng": "28.82193600",
+        "location": "0101000020E61000000845A973FBD33C40900B73277D424440"
+      },
+      {
+        "id": "929",
+        "title": "ÇINARCIK",
+        "lat": "40.64061110",
+        "lng": "29.10707730",
+        "northeast_lat": "40.64863110",
+        "northeast_lng": "29.11868200",
+        "southwest_lat": "40.63616900",
+        "southwest_lng": "29.09971800",
+        "location": "0101000020E6100000DCA4FD6A691B3D4030FA658BFF514440"
+      },
+      {
+        "id": "930",
+        "title": "ÇİFTLİKKÖY",
+        "lat": "40.66027780",
+        "lng": "29.32361110",
+        "northeast_lat": "40.70198600",
+        "northeast_lng": "29.44162500",
+        "southwest_lat": "40.63788400",
+        "southwest_lng": "29.30897300",
+        "location": "0101000020E6100000621F532DD8523D402EA3A2FB83544440"
+      },
+      {
+        "id": "931",
+        "title": "TERMAL",
+        "lat": "40.60527780",
+        "lng": "29.17444440",
+        "northeast_lat": "40.61143110",
+        "northeast_lng": "29.18407600",
+        "southwest_lat": "40.59896900",
+        "southwest_lng": "29.16512400",
+        "location": "0101000020E610000068F86063A82C3D4057FF31BE794D4440"
+      },
+      {
+        "id": "932",
+        "title": "YALOVA",
+        "lat": "40.65000000",
+        "lng": "29.26666670",
+        "northeast_lat": "40.66806000",
+        "northeast_lng": "29.31653600",
+        "southwest_lat": "40.63413800",
+        "southwest_lng": "29.21023300",
+        "location": "0101000020E6100000A76ED34444443D403333333333534440"
+      }
+    ]
+  },
+  {
+    "id": "78",
+    "title": "KARABÜK",
+    "lat": "41.20000000",
+    "lng": "32.63333330",
+    "northeast_lat": "41.23812900",
+    "northeast_lng": "32.67551800",
+    "southwest_lat": "41.16301400",
+    "southwest_lng": "32.59258200",
+    "location": "0101000020E6100000DF7BC910115140409A99999999994440",
+    "districts": [
+      {
+        "id": "933",
+        "title": "EFLANİ",
+        "lat": "41.42305560",
+        "lng": "32.95611110",
+        "northeast_lat": "41.43023110",
+        "northeast_lng": "32.96669500",
+        "southwest_lat": "41.41776900",
+        "southwest_lng": "32.94750500",
+        "location": "0101000020E6100000DAEB38D9617A4040E03197AF26B64440"
+      },
+      {
+        "id": "934",
+        "title": "ESKİPAZAR",
+        "lat": "40.94305560",
+        "lng": "32.53055560",
+        "northeast_lat": "40.95073110",
+        "northeast_lng": "32.54172500",
+        "southwest_lat": "40.93826900",
+        "southwest_lng": "32.52267500",
+        "location": "0101000020E6100000D65AF33EE9434040A327C00BB6784440"
+      },
+      {
+        "id": "935",
+        "title": "KARABÜK",
+        "lat": "41.20000000",
+        "lng": "32.63333330",
+        "northeast_lat": "41.23812900",
+        "northeast_lng": "32.67551800",
+        "southwest_lat": "41.16301400",
+        "southwest_lng": "32.59258200",
+        "location": "0101000020E6100000DF7BC910115140409A99999999994440"
+      },
+      {
+        "id": "936",
+        "title": "OVACIK",
+        "lat": "41.07611110",
+        "lng": "32.92194440",
+        "northeast_lat": "41.08203110",
+        "northeast_lng": "32.93174400",
+        "southwest_lat": "41.06956900",
+        "southwest_lng": "32.91265600",
+        "location": "0101000020E61000007C5D2B460276404069AE2E02BE894440"
+      },
+      {
+        "id": "937",
+        "title": "SAFRANBOLU",
+        "lat": "41.25626000",
+        "lng": "32.69162000",
+        "northeast_lat": "41.27699300",
+        "northeast_lng": "32.70679700",
+        "southwest_lat": "41.23549200",
+        "southwest_lng": "32.65346000",
+        "location": "0101000020E610000038A1100187584040F0A2AF20CDA04440"
+      },
+      {
+        "id": "938",
+        "title": "YENİCE",
+        "lat": "41.20000000",
+        "lng": "32.32916670",
+        "northeast_lat": "41.20643110",
+        "northeast_lng": "32.33876200",
+        "southwest_lat": "41.19396900",
+        "southwest_lng": "32.31963800",
+        "location": "0101000020E610000054B76922222A40409A99999999994440"
+      }
+    ]
+  },
+  {
+    "id": "79",
+    "title": "KİLİS",
+    "lat": "36.71839900",
+    "lng": "37.12122000",
+    "northeast_lat": "36.74781900",
+    "northeast_lng": "37.15954100",
+    "southwest_lat": "36.70267300",
+    "southwest_lng": "37.08518300",
+    "location": "0101000020E610000081CF0F23848F4240533D997FF45B4240",
+    "districts": [
+      {
+        "id": "939",
+        "title": "ELBEYLİ",
+        "lat": "36.67420000",
+        "lng": "37.46580000",
+        "northeast_lat": "36.68163110",
+        "northeast_lng": "37.47497000",
+        "southwest_lat": "36.66916900",
+        "southwest_lng": "37.45703000",
+        "location": "0101000020E6100000083D9B559FBB42404A7B832F4C564240"
+      },
+      {
+        "id": "940",
+        "title": "KİLİS",
+        "lat": "36.71839900",
+        "lng": "37.12122000",
+        "northeast_lat": "36.74781900",
+        "northeast_lng": "37.15954100",
+        "southwest_lat": "36.70267300",
+        "southwest_lng": "37.08518300",
+        "location": "0101000020E610000081CF0F23848F4240533D997FF45B4240"
+      },
+      {
+        "id": "941",
+        "title": "MUSABEYLİ",
+        "lat": "36.88640000",
+        "lng": "36.91860000",
+        "northeast_lat": "36.89213110",
+        "northeast_lng": "36.92699500",
+        "southwest_lat": "36.87966900",
+        "southwest_lng": "36.90900500",
+        "location": "0101000020E6100000840D4FAF947542405396218E75714240"
+      },
+      {
+        "id": "942",
+        "title": "POLATELİ",
+        "lat": "36.84087740",
+        "lng": "37.14462010",
+        "northeast_lat": "36.84843110",
+        "northeast_lng": "37.15289000",
+        "southwest_lat": "36.83596900",
+        "southwest_lng": "37.13491000",
+        "location": "0101000020E610000010EC53E9829242400679E2DEA16B4240"
+      }
+    ]
+  },
+  {
+    "id": "80",
+    "title": "OSMANİYE",
+    "lat": "37.06805000",
+    "lng": "36.26158900",
+    "northeast_lat": "37.10406100",
+    "northeast_lng": "36.28794100",
+    "southwest_lat": "37.04694000",
+    "southwest_lng": "36.20803400",
+    "location": "0101000020E610000026FF93BF7B214240143FC6DCB5884240",
+    "districts": [
+      {
+        "id": "943",
+        "title": "BAHÇE",
+        "lat": "37.20000000",
+        "lng": "36.58333330",
+        "northeast_lat": "37.21233110",
+        "northeast_lng": "36.59253300",
+        "southwest_lat": "37.19986900",
+        "southwest_lng": "36.57446700",
+        "location": "0101000020E6100000791563AAAA4A42409A99999999994240"
+      },
+      {
+        "id": "944",
+        "title": "DÜZİÇİ",
+        "lat": "37.25714370",
+        "lng": "36.46619140",
+        "northeast_lat": "37.26393110",
+        "northeast_lng": "36.47853900",
+        "southwest_lat": "37.25146900",
+        "southwest_lng": "36.46046100",
+        "location": "0101000020E61000009656E828AC3B4240ACEFB215EAA04240"
+      },
+      {
+        "id": "945",
+        "title": "HASANBEYLİ",
+        "lat": "37.13320090",
+        "lng": "36.55268510",
+        "northeast_lat": "37.13873110",
+        "northeast_lng": "36.56222400",
+        "southwest_lat": "37.12626900",
+        "southwest_lng": "36.54417600",
+        "location": "0101000020E610000045BEA662BE4642401DA622BA0C914240"
+      },
+      {
+        "id": "946",
+        "title": "KADİRLİ",
+        "lat": "37.36983330",
+        "lng": "36.10000000",
+        "northeast_lat": "37.38538000",
+        "northeast_lng": "36.12099700",
+        "southwest_lat": "37.35195500",
+        "southwest_lng": "36.06296500",
+        "location": "0101000020E6100000CDCCCCCCCC0C4240633C94B256AF4240"
+      },
+      {
+        "id": "947",
+        "title": "OSMANİYE",
+        "lat": "37.06805000",
+        "lng": "36.26158900",
+        "northeast_lat": "37.10406100",
+        "northeast_lng": "36.28794100",
+        "southwest_lat": "37.04694000",
+        "southwest_lng": "36.20803400",
+        "location": "0101000020E610000026FF93BF7B214240143FC6DCB5884240"
+      },
+      {
+        "id": "948",
+        "title": "SUMBAS",
+        "lat": "37.44318370",
+        "lng": "36.03224590",
+        "northeast_lat": "37.45013110",
+        "northeast_lng": "36.03946200",
+        "southwest_lat": "37.43766900",
+        "southwest_lng": "36.02133800",
+        "location": "0101000020E61000000DF736A22004424065CF543EBAB84240"
+      },
+      {
+        "id": "949",
+        "title": "TOPRAKKALE",
+        "lat": "37.06701740",
+        "lng": "36.14639340",
+        "northeast_lat": "37.07393110",
+        "northeast_lng": "36.15701700",
+        "southwest_lat": "37.06146900",
+        "southwest_lng": "36.13898300",
+        "location": "0101000020E6100000D5ACD804BD124240A8A1B20694884240"
+      }
+    ]
+  },
+  {
+    "id": "81",
+    "title": "DÜZCE",
+    "lat": "40.84384900",
+    "lng": "31.15654000",
+    "northeast_lat": "40.89176200",
+    "northeast_lng": "31.19580700",
+    "southwest_lat": "40.82471700",
+    "southwest_lng": "31.10666200",
+    "location": "0101000020E61000000E84640113283F4093E1783E036C4440",
+    "districts": [
+      {
+        "id": "950",
+        "title": "AKÇAKOCA",
+        "lat": "41.08593000",
+        "lng": "31.12004100",
+        "northeast_lat": "41.09220900",
+        "northeast_lng": "31.15135500",
+        "southwest_lat": "41.07769600",
+        "southwest_lng": "31.10038100",
+        "location": "0101000020E6100000DC2DC901BB1E3F4065DF15C1FF8A4440"
+      },
+      {
+        "id": "951",
+        "title": "CUMAYERİ",
+        "lat": "40.87387070",
+        "lng": "30.94905680",
+        "northeast_lat": "40.88113110",
+        "northeast_lng": "30.96081500",
+        "southwest_lat": "40.86866900",
+        "southwest_lng": "30.94178500",
+        "location": "0101000020E6100000E20BEE62F5F23E4060B7BEFEDA6F4440"
+      },
+      {
+        "id": "952",
+        "title": "ÇİLİMLİ",
+        "lat": "40.89689700",
+        "lng": "31.04701400",
+        "northeast_lat": "40.90163110",
+        "northeast_lng": "31.05791800",
+        "southwest_lat": "40.88916900",
+        "southwest_lng": "31.03888200",
+        "location": "0101000020E61000004374081C090C3F40B5705985CD724440"
+      },
+      {
+        "id": "953",
+        "title": "DÜZCE",
+        "lat": "40.84384900",
+        "lng": "31.15654000",
+        "northeast_lat": "40.89176200",
+        "northeast_lng": "31.19580700",
+        "southwest_lat": "40.82471700",
+        "southwest_lng": "31.10666200",
+        "location": "0101000020E61000000E84640113283F4093E1783E036C4440"
+      },
+      {
+        "id": "954",
+        "title": "GÖLYAKA",
+        "lat": "40.77657860",
+        "lng": "30.99572700",
+        "northeast_lat": "40.78313110",
+        "northeast_lng": "31.00860100",
+        "southwest_lat": "40.77066900",
+        "southwest_lng": "30.98959900",
+        "location": "0101000020E610000083BEF4F6E7FE3E4001E374ED66634440"
+      },
+      {
+        "id": "955",
+        "title": "GÜMÜŞOVA",
+        "lat": "40.85000000",
+        "lng": "30.93333330",
+        "northeast_lat": "40.85363110",
+        "northeast_lng": "30.94951100",
+        "southwest_lat": "40.84116900",
+        "southwest_lng": "30.93048900",
+        "location": "0101000020E61000008CC45FEEEEEE3E40CDCCCCCCCC6C4440"
+      },
+      {
+        "id": "956",
+        "title": "KAYNAŞLI",
+        "lat": "40.77733670",
+        "lng": "31.30326690",
+        "northeast_lat": "40.78193110",
+        "northeast_lng": "31.31430100",
+        "southwest_lat": "40.76946900",
+        "southwest_lng": "31.29529900",
+        "location": "0101000020E6100000957549E6A24D3F40833DDCC47F634440"
+      },
+      {
+        "id": "957",
+        "title": "YIĞILCA",
+        "lat": "40.96593900",
+        "lng": "31.44241900",
+        "northeast_lat": "40.96683110",
+        "northeast_lng": "31.45152700",
+        "southwest_lat": "40.95436900",
+        "southwest_lng": "31.43247300",
+        "location": "0101000020E61000000821205F42713F4029779FE3A37B4440"
+      }
+    ]
   }
 ]
