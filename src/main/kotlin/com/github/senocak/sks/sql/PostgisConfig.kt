@@ -3,16 +3,17 @@ package com.github.senocak.sks.sql
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Primary
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import org.springframework.stereotype.Component
 import javax.sql.DataSource
 
-//@Component
+@Component
 class PostgisConfig(
-    private val datasource: DataSourceProperties,
-    private val hikari: HikariConfig
+    private val datasource: DataSourceConfigs,
+    private val hikari: HikariProperties
 ){
     @Bean
     @Primary
@@ -42,8 +43,9 @@ class PostgisConfig(
             }
         )
 }
-//@ConfigurationProperties(prefix = "spring.datasource")
-//class DataSourceConfigs: DataSourceProperties()
-//
-//@ConfigurationProperties(prefix = "spring.datasource.hikari")
-//class HikariProperties: HikariConfig()
+
+@ConfigurationProperties(prefix = "spring.datasource")
+class DataSourceConfigs: DataSourceProperties()
+
+@ConfigurationProperties(prefix = "spring.datasource.hikari")
+class HikariProperties: HikariConfig()

@@ -3,6 +3,7 @@ package com.github.senocak.sks
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
 import java.io.File
 
@@ -11,6 +12,7 @@ fun main(args: Array<String>) {
 }
 
 @SpringBootApplication
+@ConfigurationPropertiesScan
 class SpringKotlinSpatialApplication
 
 fun String.getResourceText(): String = File(ClassLoader.getSystemResource(this).file).readText()
