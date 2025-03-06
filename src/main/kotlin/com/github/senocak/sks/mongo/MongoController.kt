@@ -32,6 +32,7 @@ class MongoController(
 
     @EventListener(value = [ApplicationReadyEvent::class])
     fun init(event: ApplicationReadyEvent) {
+        //val dtos = "city-district.json".getResourceText().generateCityDistrict()
         log.info("Starting MongoDB migration process...")
         if (mongoTemplate.collectionExists("city"))
             mongoTemplate.dropCollection("city").also { log.info("Dropped existing city collection") }

@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource
 import org.springframework.stereotype.Component
 import javax.sql.DataSource
 
-@Component
+//@Component
 class PostgisConfig(
     private val datasource: DataSourceProperties,
     private val hikari: HikariConfig
