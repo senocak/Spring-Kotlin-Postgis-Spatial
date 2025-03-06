@@ -2,6 +2,8 @@ package com.github.senocak.sks
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
@@ -15,9 +17,6 @@ fun main(args: Array<String>) {
 @ConfigurationPropertiesScan
 class SpringKotlinSpatialApplication
 
-fun String.getResourceText(): String = File(ClassLoader.getSystemResource(this).file).readText()
-fun String.generateCityDistrict(): List<CityDistrict> = jacksonObjectMapper().readValue(this, object : TypeReference<List<CityDistrict>>() {})
-
 data class CityDistrict(
     val id: String,
     val title: String,
@@ -30,4 +29,10 @@ data class CityDistrict(
     val location: String,
 ) {
     var districts: MutableList<CityDistrict> = mutableListOf()
+}
+
+fun String.getResourceText(): String = File(ClassLoader.getSystemResource(this).file).readText()
+fun String.generateCityDistrict(): List<CityDistrict> = jacksonObjectMapper().readValue(this, object : TypeReference<List<CityDistrict>>() {})
+fun <R : Any> R.logger(): Lazy<Logger> = lazy {
+    LoggerFactory.getLogger((if (javaClass.kotlin.isCompanion) javaClass.enclosingClass else javaClass).name)
 }

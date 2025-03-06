@@ -27,7 +27,6 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.hibernate:hibernate-spatial:6.5.2.Final")
-    implementation("org.liquibase:liquibase-core")
     implementation("redis.clients:jedis:3.3.0")
     runtimeOnly("org.postgresql:postgresql")
 

@@ -1,10 +1,13 @@
 package com.github.senocak.sks.sql
 
+import com.github.senocak.sks.CityDistrict
+import com.github.senocak.sks.generateCityDistrict
+import com.github.senocak.sks.getResourceText
+import com.github.senocak.sks.logger
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.Point
 import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
 import org.springframework.web.bind.annotation.GetMapping
@@ -20,25 +23,48 @@ class PostgisController(
     val cityRepository: CityRepository,
     val districtRepository: DistrictRepository,
 ) {
-    private val log: Logger = LoggerFactory.getLogger(javaClass)
+    private val log: Logger by logger()
     private val geometryFactory = GeometryFactory()
 
     @EventListener(value = [ApplicationReadyEvent::class])
     fun init(event: ApplicationReadyEvent) {
-        cityRepository.findAll()
-        .map { city: City ->
-            if (city.location == null)
-                city.location = geometryFactory.createPoint(Coordinate(city.lng.toDouble(), city.lat.toDouble()))
-            city
-        }
-        .run { cityRepository.saveAll(this) }
-        districtRepository.findAll()
-            .map { district: District ->
-                if (district.location == null)
-                    district.location = geometryFactory.createPoint(Coordinate(district.lng.toDouble(), district.lat.toDouble()))
-                district
+        log.info("Starting Postgis migration process...")
+        districtRepository.deleteAll()
+        cityRepository.deleteAll()
+        "city-district.json"
+            .getResourceText()
+            .generateCityDistrict()
+            .forEach { cd: CityDistrict ->
+                run {
+                    val city: City = City(title = cd.title, lat = cd.lat.toBigDecimal(), lng = cd.lng.toBigDecimal())
+                        .apply {
+                            this.id = cd.id.toInt()
+                            this.northeastLat = cd.northeast_lat.toBigDecimal()
+                            this.northeastLng = cd.northeast_lng.toBigDecimal()
+                            this.southwestLat = cd.southwest_lat.toBigDecimal()
+                            this.southwestLng = cd.southwest_lng.toBigDecimal()
+                            this.location = geometryFactory.createPoint(Coordinate(cd.lng.toDouble(), cd.lat.toDouble()))
+                        }
+                        .apply {
+                            cityRepository.save(this).also { log.info("Inserted $this city into Postgis") }
+                        }
+                    cd.districts.forEach { d: CityDistrict ->
+                        District(city_id = city, title = d.title, lat = d.lat.toBigDecimal(), lng = d.lng.toBigDecimal())
+                            .apply {
+                                this.id = d.id.toInt()
+                                this.northeastLat = d.northeast_lat.toBigDecimal()
+                                this.northeastLng = d.northeast_lng.toBigDecimal()
+                                this.southwestLat = d.southwest_lat.toBigDecimal()
+                                this.southwestLng = d.southwest_lng.toBigDecimal()
+                                this.location = geometryFactory.createPoint(Coordinate(d.lng.toDouble(), d.lat.toDouble()))
+                            }
+                            .apply {
+                                districtRepository.save(this).also { log.info("Inserted $this district into Postgis") }
+                            }
+                    }
+                }
             }
-            .run { districtRepository.saveAll(this) }
+        log.info("Postgis migration completed successfully")
     }
 
     @GetMapping("cities")

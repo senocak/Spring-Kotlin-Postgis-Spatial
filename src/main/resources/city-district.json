@@ -5256,5 +5256,348 @@
         "location": "0101000020E610000013AFFC43441F3D4054B7692222824440"
       }
     ]
+  },
+  {
+    "id": "35",
+    "title": "İZMİR",
+    "lat": "38.41885000",
+    "lng": "27.12872000",
+    "northeast_lat": "38.50677300",
+    "northeast_lng": "27.30441500",
+    "southwest_lat": "38.34315700",
+    "southwest_lng": "27.01719200",
+    "location": "0101000020E610000054573ECBF3203B40FDF675E09C354340",
+    "districts": [
+      {
+        "id": "455",
+        "title": "ALİAĞA",
+        "lat": "38.79500000",
+        "lng": "26.97027780",
+        "northeast_lat": "38.82675100",
+        "northeast_lng": "26.99667200",
+        "southwest_lat": "38.76895400",
+        "southwest_lng": "26.91626300",
+        "location": "0101000020E6100000EB083B2064F83A40F6285C8FC2654340"
+      },
+      {
+        "id": "456",
+        "title": "BALÇOVA",
+        "lat": "38.36929400",
+        "lng": "27.09344200",
+        "northeast_lat": "38.37804160",
+        "northeast_lng": "27.10944940",
+        "southwest_lat": "38.36054530",
+        "southwest_lng": "27.07743460",
+        "location": "0101000020E6100000A5129ED0EB173B40F44D9A06452F4340"
+      },
+      {
+        "id": "457",
+        "title": "BAYINDIR",
+        "lat": "38.22856500",
+        "lng": "27.64653300",
+        "northeast_lat": "38.23365110",
+        "northeast_lng": "27.65636700",
+        "southwest_lat": "38.22118900",
+        "southwest_lng": "27.63804900",
+        "location": "0101000020E6100000E7C8CA2F83A53B405001309E411D4340"
+      },
+      {
+        "id": "458",
+        "title": "BAYRAKLI",
+        "lat": "38.46222220",
+        "lng": "27.16666670",
+        "northeast_lat": "38.50048800",
+        "northeast_lng": "27.20341300",
+        "southwest_lat": "38.44784000",
+        "southwest_lng": "27.10730600",
+        "location": "0101000020E61000000ED539ABAA2A3B401A3ED8182A3B4340"
+      },
+      {
+        "id": "459",
+        "title": "BERGAMA",
+        "lat": "39.11666670",
+        "lng": "27.18333330",
+        "northeast_lat": "39.12758000",
+        "northeast_lng": "27.21414800",
+        "southwest_lat": "39.09470300",
+        "southwest_lng": "27.14536700",
+        "location": "0101000020E61000008CC45FEEEE2E3B40218436EFEE8E4340"
+      },
+      {
+        "id": "460",
+        "title": "BEYDAĞ",
+        "lat": "38.08687390",
+        "lng": "28.20880130",
+        "northeast_lat": "38.09093110",
+        "northeast_lng": "28.21974100",
+        "southwest_lat": "38.07846900",
+        "southwest_lng": "28.20145900",
+        "location": "0101000020E6100000BFDC820074353C4020B017AF1E0B4340"
+      },
+      {
+        "id": "461",
+        "title": "BORNOVA",
+        "lat": "38.46265480",
+        "lng": "27.24409570",
+        "northeast_lat": "38.57657700",
+        "northeast_lng": "27.34486400",
+        "southwest_lat": "38.36470000",
+        "southwest_lng": "27.17790500",
+        "location": "0101000020E61000001F98480E7D3E3B4031ABC145383B4340"
+      },
+      {
+        "id": "462",
+        "title": "BUCA",
+        "lat": "38.41885000",
+        "lng": "27.12872000",
+        "northeast_lat": "38.50677300",
+        "northeast_lng": "27.30441500",
+        "southwest_lat": "38.34315700",
+        "southwest_lng": "27.01719200",
+        "location": "0101000020E610000054573ECBF3203B40FDF675E09C354340"
+      },
+      {
+        "id": "463",
+        "title": "ÇEŞME",
+        "lat": "38.32981000",
+        "lng": "26.31492100",
+        "northeast_lat": "38.38688400",
+        "northeast_lng": "26.49211900",
+        "southwest_lat": "38.25839100",
+        "southwest_lng": "26.22976500",
+        "location": "0101000020E6100000D8D2A3A99E503A4067F2CD36372A4340"
+      },
+      {
+        "id": "464",
+        "title": "ÇİĞLİ",
+        "lat": "38.49943220",
+        "lng": "27.03821580",
+        "northeast_lat": "38.54391500",
+        "northeast_lng": "27.09252400",
+        "southwest_lat": "38.47384500",
+        "southwest_lng": "26.99124700",
+        "location": "0101000020E6100000C330BB82C8093B40E0C8F264ED3F4340"
+      },
+      {
+        "id": "465",
+        "title": "DİKİLİ",
+        "lat": "39.07209700",
+        "lng": "26.88820300",
+        "northeast_lat": "39.07998800",
+        "northeast_lng": "26.89462600",
+        "southwest_lat": "39.06319600",
+        "southwest_lng": "26.88142400",
+        "location": "0101000020E61000008735954561E33A40E29178793A894340"
+      },
+      {
+        "id": "466",
+        "title": "FOÇA",
+        "lat": "38.66750000",
+        "lng": "26.75805560",
+        "northeast_lat": "38.69357400",
+        "northeast_lng": "26.76380200",
+        "southwest_lat": "38.65969700",
+        "southwest_lng": "26.73230100",
+        "location": "0101000020E6100000B68C8AEE0FC23A403D0AD7A370554340"
+      },
+      {
+        "id": "467",
+        "title": "GAZİEMİR",
+        "lat": "38.32515000",
+        "lng": "27.12252000",
+        "northeast_lat": "38.34538600",
+        "northeast_lng": "27.18873100",
+        "southwest_lat": "38.29017900",
+        "southwest_lng": "27.11841600",
+        "location": "0101000020E61000001E1B81785D1F3B40AF25E4839E294340"
+      },
+      {
+        "id": "468",
+        "title": "GÜZELBAHÇE",
+        "lat": "38.36197610",
+        "lng": "26.90281250",
+        "northeast_lat": "38.38477800",
+        "northeast_lng": "26.94262900",
+        "southwest_lat": "38.34200000",
+        "southwest_lng": "26.79739400",
+        "location": "0101000020E610000085EB51B81EE73A4081B79B3B552E4340"
+      },
+      {
+        "id": "469",
+        "title": "KARABAĞLAR",
+        "lat": "38.32698820",
+        "lng": "27.04410090",
+        "northeast_lat": "38.40620400",
+        "northeast_lng": "27.14244300",
+        "southwest_lat": "38.29536100",
+        "southwest_lng": "26.94827400",
+        "location": "0101000020E6100000633953324A0B3B40C696D4BFDA294340"
+      },
+      {
+        "id": "470",
+        "title": "KARABURUN",
+        "lat": "38.63333330",
+        "lng": "26.51666670",
+        "northeast_lat": "38.64023110",
+        "northeast_lng": "26.51871000",
+        "southwest_lat": "38.62776900",
+        "southwest_lng": "26.50029000",
+        "location": "0101000020E6100000A76ED34444843A40DF7BC91011514340"
+      },
+      {
+        "id": "471",
+        "title": "KARŞIYAKA",
+        "lat": "38.41885000",
+        "lng": "27.12872000",
+        "northeast_lat": "38.50677300",
+        "northeast_lng": "27.30441500",
+        "southwest_lat": "38.34315700",
+        "southwest_lng": "27.01719200",
+        "location": "0101000020E610000054573ECBF3203B40FDF675E09C354340"
+      },
+      {
+        "id": "472",
+        "title": "KEMALPAŞA",
+        "lat": "38.42632300",
+        "lng": "27.42305200",
+        "northeast_lat": "38.43333610",
+        "northeast_lng": "27.42953400",
+        "southwest_lat": "38.42087400",
+        "southwest_lng": "27.41116600",
+        "location": "0101000020E6100000E481C8224D6C3B402C4487C091364340"
+      },
+      {
+        "id": "473",
+        "title": "KINIK",
+        "lat": "39.08837100",
+        "lng": "27.38069000",
+        "northeast_lat": "39.09453110",
+        "northeast_lng": "27.39102500",
+        "southwest_lat": "39.08206900",
+        "southwest_lng": "27.37248700",
+        "location": "0101000020E61000000CEA5BE674613B401975ADBD4F8B4340"
+      },
+      {
+        "id": "474",
+        "title": "KİRAZ",
+        "lat": "38.23060000",
+        "lng": "28.20440000",
+        "northeast_lat": "38.23643110",
+        "northeast_lng": "28.21555900",
+        "southwest_lat": "38.22396900",
+        "southwest_lng": "28.19724100",
+        "location": "0101000020E61000006A4DF38E53343C40933A014D841D4340"
+      },
+      {
+        "id": "475",
+        "title": "KONAK",
+        "lat": "38.41448020",
+        "lng": "27.14412270",
+        "northeast_lat": "38.44871500",
+        "northeast_lng": "27.18944800",
+        "southwest_lat": "38.39302700",
+        "southwest_lng": "27.06871400",
+        "location": "0101000020E6100000791CAB39E5243B4076EBEBAF0D354340"
+      },
+      {
+        "id": "476",
+        "title": "MENDERES(CUMAOVASI)",
+        "lat": "38.25400000",
+        "lng": "27.13400000",
+        "northeast_lat": "38.30022000",
+        "northeast_lng": "27.17102700",
+        "southwest_lat": "38.24000500",
+        "southwest_lng": "27.11351200",
+        "location": "0101000020E6100000FCA9F1D24D223B408D976E1283204340"
+      },
+      {
+        "id": "477",
+        "title": "MENEMEN",
+        "lat": "38.60000000",
+        "lng": "27.06666670",
+        "northeast_lat": "38.61945400",
+        "northeast_lng": "27.10600700",
+        "southwest_lat": "38.53818300",
+        "southwest_lng": "26.99133000",
+        "location": "0101000020E6100000743BA01111113B40CDCCCCCCCC4C4340"
+      },
+      {
+        "id": "478",
+        "title": "NARLIDERE",
+        "lat": "38.39099890",
+        "lng": "27.00290150",
+        "northeast_lat": "38.41824600",
+        "northeast_lng": "27.03501400",
+        "southwest_lat": "38.36205800",
+        "southwest_lng": "26.92302700",
+        "location": "0101000020E6100000FE9B1727BE003B40D02280400C324340"
+      },
+      {
+        "id": "479",
+        "title": "ÖDEMİŞ",
+        "lat": "38.23055560",
+        "lng": "27.97166670",
+        "northeast_lat": "38.25239500",
+        "northeast_lng": "28.00689700",
+        "southwest_lat": "38.21320300",
+        "southwest_lng": "27.94533700",
+        "location": "0101000020E6100000BC1C1B26BFF83B4070F48CD8821D4340"
+      },
+      {
+        "id": "480",
+        "title": "SEFERİHİSAR",
+        "lat": "38.19892100",
+        "lng": "26.83733900",
+        "northeast_lat": "38.20515300",
+        "northeast_lng": "26.84645500",
+        "southwest_lat": "38.18727100",
+        "southwest_lng": "26.83267100",
+        "location": "0101000020E610000054AA44D95BD63A406ABE4A3E76194340"
+      },
+      {
+        "id": "481",
+        "title": "SELÇUK",
+        "lat": "37.94988800",
+        "lng": "27.37014200",
+        "northeast_lat": "37.95847300",
+        "northeast_lng": "27.38147300",
+        "southwest_lat": "37.93805800",
+        "southwest_lng": "27.36207900",
+        "location": "0101000020E610000044E048A0C15E3B40726E13EE95F94240"
+      },
+      {
+        "id": "482",
+        "title": "TİRE",
+        "lat": "38.08858100",
+        "lng": "27.73347100",
+        "northeast_lat": "38.09796300",
+        "northeast_lng": "27.75185100",
+        "southwest_lat": "38.08079700",
+        "southwest_lng": "27.72311000",
+        "location": "0101000020E61000007E9065C1C4BB3B400306499F560B4340"
+      },
+      {
+        "id": "483",
+        "title": "TORBALI",
+        "lat": "38.17784100",
+        "lng": "27.35334000",
+        "northeast_lat": "38.18521700",
+        "northeast_lng": "27.37768400",
+        "southwest_lat": "38.14153100",
+        "southwest_lng": "27.34135400",
+        "location": "0101000020E61000005F5E807D745A3B40A8716F7EC3164340"
+      },
+      {
+        "id": "484",
+        "title": "URLA",
+        "lat": "38.32457000",
+        "lng": "26.76190000",
+        "northeast_lat": "38.33945300",
+        "northeast_lng": "26.78472900",
+        "southwest_lat": "38.31893300",
+        "southwest_lng": "26.75197100",
+        "location": "0101000020E610000089D2DEE00BC33A40A1A17F828B294340"
+      }
+    ]
   }
 ]

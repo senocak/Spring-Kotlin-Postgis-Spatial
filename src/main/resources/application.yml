@@ -44,9 +44,6 @@ spring:
             socket:
                 connect-timeout: 5000
                 read-timeout: 5000
-    liquibase:
-        enabled: false
-        change-log: classpath:migration.sql
 logging:
     level:
         org:

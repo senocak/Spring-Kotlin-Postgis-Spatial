@@ -14,7 +14,6 @@ import java.io.Serializable
 import java.math.BigDecimal
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
-import org.hibernate.annotations.UuidGenerator
 import org.locationtech.jts.geom.Point
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
@@ -23,17 +22,14 @@ import org.springframework.data.jpa.repository.Query
 @MappedSuperclass
 open class BaseDomain(
     @Id
-    @UuidGenerator(style = UuidGenerator.Style.RANDOM)
     @Column(name = "id", updatable = false, nullable = false)
-    var id: String? = null
+    var id: Int? = null
 ): Serializable
 
 @Entity
 @Table(name = "city")
 data class City(
-    @Column(name = "title", nullable = false)
-    var title: String,
-
+    @Column(name = "title", nullable = false) var title: String,
     @Column(name = "lat", precision = 10, scale = 8, nullable = false) var lat: BigDecimal,
     @Column(name = "lng", precision = 10, scale = 8, nullable = false) var lng: BigDecimal,
 ): BaseDomain() {
@@ -58,9 +54,7 @@ data class District (
     )
     val city_id: City,
 
-    @Column(name = "title", nullable = false)
-    var title: String,
-
+    @Column(name = "title", nullable = false) var title: String,
     @Column(name = "lat", precision = 10, scale = 8, nullable = false) var lat: BigDecimal,
     @Column(name = "lng", precision = 10, scale = 8, nullable = false) var lng: BigDecimal,
 ) : BaseDomain() {
@@ -75,11 +69,6 @@ data class District (
 interface CityRepository: JpaRepository<City, String>, JpaSpecificationExecutor<City> {
     @Query("SELECT c FROM City c WHERE function('ST_DWithin', c.location, :point, :distance) = true")
     fun findNearest(point: Point, distance: Double): Iterable<City>
-    //@Query("SELECT g FROM City g WHERE ST_Intersects(g.location, ST_SetSRID(ST_MakePoint(:lng, :lat), 4326))", nativeQuery = true)
-    //fun findAllByLngLat(lng: Double, lat: Double): List<City>
-
-    //@Query("select f from City as f where dwithin(f.location, :point, 10000, true) = TRUE")
-    //fun findNearestCities(point: Point): List<City>
 }
 interface DistrictRepository: JpaRepository<District, String>, JpaSpecificationExecutor<District> {
     @Query("SELECT d FROM District d WHERE function('ST_DWithin', d.location, :point, :distance) = true")

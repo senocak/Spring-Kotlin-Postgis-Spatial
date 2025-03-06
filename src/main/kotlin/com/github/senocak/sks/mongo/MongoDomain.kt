@@ -16,9 +16,7 @@ import java.util.Date
 import java.util.UUID
 
 open class BaseDocument(
-    @Id var id: UUID? = null,
-    @Field @CreatedDate var createdAt: Date = Date(),
-    @Field @LastModifiedDate var updatedAt: Date = Date()
+    @Id var id: Int? = null,
 ): Serializable
 
 @Document(collection = "city")
@@ -48,10 +46,10 @@ data class DistrictDocument(
     @Field @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)  var location: Point? = null
 }
 
-interface CityDocumentRepository: MongoRepository<CityDocument, UUID> {
+interface CityDocumentRepository: MongoRepository<CityDocument, Int> {
     fun findByLocationNear(location: org.springframework.data.geo.Point, distance: Distance): List<CityDocument>
 }
 
-interface DistrictDocumentRepository: MongoRepository<DistrictDocument, UUID> {
+interface DistrictDocumentRepository: MongoRepository<DistrictDocument, Int> {
     fun findByLocationNear(location: org.springframework.data.geo.Point, distance: Distance): List<DistrictDocument>
 }
