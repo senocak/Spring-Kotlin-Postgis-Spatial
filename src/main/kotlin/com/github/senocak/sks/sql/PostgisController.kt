@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/postgis")
 class PostgisController(
-    val cityRepository: CityRepository,
-    val districtRepository: DistrictRepository,
+    private val cityRepository: CityRepository,
+    private val districtRepository: DistrictRepository,
 ) {
     private val log: Logger by logger()
     private val geometryFactory = GeometryFactory()
@@ -48,6 +48,7 @@ class PostgisController(
                         .apply {
                             cityRepository.save(this).also { log.info("Inserted $this city into Postgis") }
                         }
+                    val districts = arrayListOf<District>()
                     cd.districts.forEach { d: CityDistrict ->
                         District(city_id = city, title = d.title, lat = d.lat.toBigDecimal(), lng = d.lng.toBigDecimal())
                             .apply {
@@ -58,10 +59,9 @@ class PostgisController(
                                 this.southwestLng = d.southwest_lng.toBigDecimal()
                                 this.location = geometryFactory.createPoint(Coordinate(d.lng.toDouble(), d.lat.toDouble()))
                             }
-                            .apply {
-                                districtRepository.save(this).also { log.info("Inserted $this district into Postgis") }
-                            }
+                            .apply { districts.add(element = this) }
                     }
+                    districtRepository.saveAll(districts).also { log.info("Inserted $this districts into Postgis") }
                 }
             }
         log.info("Postgis migration completed successfully")

@@ -1,12 +1,14 @@
 package com.github.senocak.sks.redis
 
+import com.github.senocak.sks.CityDistrict
+import com.github.senocak.sks.generateCityDistrict
+import com.github.senocak.sks.getResourceText
+import com.github.senocak.sks.logger
 import com.github.senocak.sks.sql.City
 import com.github.senocak.sks.sql.District
-import com.github.senocak.sks.sql.PostgisController
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
 import org.springframework.data.geo.Circle
@@ -33,9 +35,8 @@ class RedisController(
     private val redisTemplate: RedisTemplate<String, Any>,
     private val geoOperations: GeoOperations<String, Any>,
     private val jedisPool: JedisPool,
-    private val postgisController: PostgisController
 ) {
-    private val log: Logger = LoggerFactory.getLogger(javaClass)
+    private val log: Logger by logger()
     private val geometryFactory = GeometryFactory()
     private val locationsCity: String = "redis_location_city"
     private val locationsDistrict: String = "redis_location_district"
@@ -43,28 +44,49 @@ class RedisController(
 
     @EventListener(value = [ApplicationReadyEvent::class])
     fun init(event: ApplicationReadyEvent) {
+        log.info("Starting Redis migration process...")
         connection?.serverCommands()?.flushDb()
         connection?.serverCommands()?.flushAll()
-        postgisController.cityRepository.findAll()
-        .map { city: City ->
-            if (city.location == null)
-                city.location = geometryFactory.createPoint(Coordinate(city.lng.toDouble(), city.lat.toDouble()))
-            //add(latitude = city.lat.toDouble(), longitude = city.lng.toDouble(), name = city.title)
-            jedisPool.resource.use {
-                it.geoadd(locationsCity, city.lng.toDouble(), city.lat.toDouble(), city.title);
-            }
-            city
-        }
-        postgisController.districtRepository.findAll()
-            .map { district: District ->
-                if (district.location == null)
-                    district.location = geometryFactory.createPoint(Coordinate(district.lng.toDouble(), district.lat.toDouble()))
-                add(latitude = district.lat.toDouble(), longitude = district.lng.toDouble(), name = district.title)
-                jedisPool.resource.use {
-                    it.geoadd(locationsDistrict, district.lng.toDouble(), district.lat.toDouble(), district.title);
+        "city-district.json"
+            .getResourceText()
+            .generateCityDistrict()
+            .forEach { cd: CityDistrict ->
+                run {
+                    val city: City = City(title = cd.title, lat = cd.lat.toBigDecimal(), lng = cd.lng.toBigDecimal())
+                        .apply {
+                            this.id = cd.id.toInt()
+                            this.northeastLat = cd.northeast_lat.toBigDecimal()
+                            this.northeastLng = cd.northeast_lng.toBigDecimal()
+                            this.southwestLat = cd.southwest_lat.toBigDecimal()
+                            this.southwestLng = cd.southwest_lng.toBigDecimal()
+                            this.location = geometryFactory.createPoint(Coordinate(cd.lng.toDouble(), cd.lat.toDouble()))
+                        }
+                        .apply {
+                            //add(latitude = this.lat.toDouble(), longitude = this.lng.toDouble(), name = this.title)
+                            jedisPool.resource
+                                .use { it.geoadd(locationsCity, this.lng.toDouble(), this.lat.toDouble(), this.title) }
+                                .also { log.info("Inserted $this city into Redis") }
+                        }
+                    cd.districts.forEach { d: CityDistrict ->
+                        District(city_id = city, title = d.title, lat = d.lat.toBigDecimal(), lng = d.lng.toBigDecimal())
+                            .apply {
+                                this.id = d.id.toInt()
+                                this.northeastLat = d.northeast_lat.toBigDecimal()
+                                this.northeastLng = d.northeast_lng.toBigDecimal()
+                                this.southwestLat = d.southwest_lat.toBigDecimal()
+                                this.southwestLng = d.southwest_lng.toBigDecimal()
+                                this.location = geometryFactory.createPoint(Coordinate(d.lng.toDouble(), d.lat.toDouble()))
+                            }
+                            .apply {
+                                add(latitude = this.lat.toDouble(), longitude = this.lng.toDouble(), name = this.title)
+                                jedisPool.resource
+                                    .use { it.geoadd(locationsDistrict, this.lng.toDouble(), this.lat.toDouble(), this.title) }
+                                    .also { log.info("Inserted $this district into Redis") }
+                            }
+                    }
                 }
-                district
             }
+        log.info("Redis migration completed successfully")
     }
 
     @GetMapping("/cities")
@@ -81,7 +103,7 @@ class RedisController(
             }
         }
         return keysList
-         */
+        */
         val cities: MutableSet<String>
         jedisPool.resource.use {
             cities = it.zrange(locationsCity, 0, -1)
@@ -128,9 +150,9 @@ class RedisController(
         val redisLocationRespons: MutableList<RedisLocation> = arrayListOf()
         response?.content?.forEach { data: GeoResult<RedisGeoCommands.GeoLocation<Any>> ->
             redisLocationRespons.add(element =
-            RedisLocation(name = "${data.content.name}", latitude = data.content.point.y, longitude = data.content.point.x)
-                .also { it.averageDistance =  data.distance}
-                .also { it.hash =  geoOperations.hash(locationsDistrict, data.content.name)!!.stream().findFirst().get()}
+                RedisLocation(name = "${data.content.name}", latitude = data.content.point.y, longitude = data.content.point.x)
+                    .also { it.averageDistance =  data.distance}
+                    .also { it.hash =  geoOperations.hash(locationsDistrict, data.content.name)!!.stream().findFirst().get()}
             )
         }
         return redisLocationRespons
